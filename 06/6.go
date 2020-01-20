@@ -42,6 +42,9 @@ func readFileToBytes(fname string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	return b, nil
+	decoded, err := base64.StdEncoding.DecodeString(string(b))
+	if err != nil {
+		return nil, err
+	}
+	return decoded, nil
 }
